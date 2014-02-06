@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'trollop'
+require 'mailgun_sendmail'
+
+opts_parser = Trollop::Parser.new do
+  banner <<-HELP
+Usage:
+  mailgun-sendmail [options] mail_from mail_to title
+
+Options:
+  HELP
+
+  opt :setup, 'Setup Mailgun Account'
+  opt :attach, 'Attachment file', :type => String, :default => nil
+end
+
+opts = Trollop::with_standard_exception_handling opts_parser do
+  opts_parser.parse(ARGV)
+end
+
+mail_from, mail_to, title = *ARGV
+
+if opts[:setup]
+  MailgunSendmail.setup
+  puts "Mailgun account setup finished."
+elsif !mail_from || !mail_to || !title
+  opts_parser.educate
+else
+  body = STDIN.read
+  puts "Sending mail to #{mail_to}...",
+       MailgunSendmail.mail(mail_from, mail_to, title, body, opts[:attach])
+end
