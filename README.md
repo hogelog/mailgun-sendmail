@@ -1,4 +1,4 @@
-# MailgunSendmail
+# Mailgun::Sendmail
 
 Provide send mail command by Mailgun API
 
@@ -6,7 +6,7 @@ Provide send mail command by Mailgun API
 
 Add this line to your application's Gemfile:
 
-    gem 'mailgun_sendmail'
+    gem 'mailgun-sendmail'
 
 And then execute:
 
@@ -14,16 +14,16 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install mailgun_sendmail
+    $ gem install mailgun-sendmail
 
 ## Usage
 
 ```
-$ mailgun_sendmail --setup
+$ mailgun-sendmail --setup
 edit your Mailgun config
-$ mailgun_sendmail
+$ mailgun-sendmail
 Usage:
-  mailgun_sendmail [options] mail_from mail_to title
+  mailgun-sendmail [options] mail_from mail_to title
 
 Options:
        --setup, -s:   Setup Mailgun Account
@@ -33,7 +33,7 @@ Options:
 
 ## Contributing
 
-1. Fork it ( http://github.com/hogelog/mailgun_sendmail/fork )
+1. Fork it ( http://github.com/hogelog/mailgun-sendmail/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

@@ -2,7 +2,7 @@
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'trollop'
-require 'mailgun_sendmail'
+require 'mailgun-sendmail'
 
 opts_parser = Trollop::Parser.new do
   banner <<-HELP
@@ -23,12 +23,12 @@ end
 mail_from, mail_to, title = *ARGV
 
 if opts[:setup]
-  MailgunSendmail.setup
+  Mailgun::Sendmail.setup
   puts "Mailgun account setup finished."
 elsif !mail_from || !mail_to || !title
   opts_parser.educate
 else
   body = STDIN.read
   puts "Sending mail to #{mail_to}...",
-       MailgunSendmail.mail(mail_from, mail_to, title, body, opts[:attach])
+       Mailgun::Sendmail.mail(mail_from, mail_to, title, body, opts[:attach])
 end
